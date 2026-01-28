@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Page</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght,GRAD@17..18,700,200&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <main class="container liquid">
+        <div class="form-box">
+            <h2>Create Account</h2>
+            <form class="form-content" action="/register" method="POST">
+                <label for="reg-name">Name</label>
+                <input class="input-content" id="reg-name" type="text" placeholder="Your name" required>
+                
+                <label for="reg-email">Email</label>
+                <input class="input-content" id="reg-email" type="email" placeholder="Email address" required>
+                
+                <label for="reg-password">Password</label>
+                <input class="input-content" id="reg-password" type="password" placeholder="Create password" required>
+                
+                <label for="reg-confirm">Confirm Password</label>
+                <input class="input-content" id="reg-confirm" type="password" placeholder="Repeat password" required>
+                
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="form-box">
+            <h2>Welcome Back</h2>
+            <form class="form-content" action="/login" method="POST">
+                <label for="login-email">Email</label>
+                <input class="input-content" id="login-email" type="email" placeholder="Enter email" required>
+                
+                <label for="login-password">Password</label>
+                <input class="input-content" id="login-password" type="password" placeholder="Enter password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+    <script src="static/js/index.js"></script>
+</body>
+</html>
