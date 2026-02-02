@@ -4,8 +4,9 @@
     --blur: blur(15px) saturate(180%);
     --glass-border: 1px solid rgba(255, 255, 255, 0.25);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    --accent-color: blueviolet;
-    --accent-hover: #000000;
+    --shadow-input: 0 0 5px rgba(125, 42, 232, 0.3);
+    --accent-color: #7d2ae8;
+    --accent-hover: rgb(40, 0, 78);
     --text-primary: #ffffff;
     --text-secondary: #ffffff9a;
 
@@ -76,6 +77,10 @@ body {
     flex-direction: column;
     margin-top: var(--gap-standard);
     gap: var(--gap-minimal);
+
+    label{
+        font-family: var(--font-secondary);
+    }
 }
 
 .input-content {
@@ -83,9 +88,13 @@ body {
     padding: var(--radius-none) var(--gap-small);
     border-radius: var(--radius-small);
     height: var(--input-height);
-    border: none;
+
+    border: 2px solid transparent; 
+    
     background: var(--accent-color);
     color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     &::placeholder {
         color: var(--text-secondary);
@@ -93,12 +102,17 @@ body {
     }
 }
 
+.input-content:focus {
+    border-color: var(--accent-hover); 
+    box-shadow: var(--shadow-input); 
+}
+
 .liquid {
     background: var(--glass-bg);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     border: var(--glass-border);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-input);
 }
 
 button {
@@ -111,13 +125,19 @@ button {
     color: var(--text-primary);
     font-family: var(--font-secondary);
     font-size: var(--font-size-button);
+    transition: transform var(--transition-fast);
+    &:hover{
+        transform: scale(1.1);
+    }
 }
 
 .wall {
     display: flex;
     place-content: center;
     align-items: center;
-    background-color: var(--accent-color); 
+
+    background: var(--accent-color);
+
     position: absolute;
     height: var(--full-height);
     width: var(--wall-width);
@@ -129,6 +149,8 @@ button {
     pointer-events: all; 
     border: var(--glass-border);
     box-shadow: var(--shadow);
+
+    font-family: var(--font-secondary);
 
     & a {
         color: var(--text-primary);
