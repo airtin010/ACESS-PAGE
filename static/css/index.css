@@ -1,33 +1,38 @@
 :root {
+    --glass-bg: rgba(255, 255, 255, 0.1); 
+    --blur: blur(20px) saturate(170%);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    --shadow-input: 0 0 10px rgba(125, 42, 232, 0.3);
 
-    --glass-bg: rgba(255, 255, 255, 0.15);
-    --blur: blur(15px) saturate(180%);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.25);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    --shadow-input: 0 0 5px rgba(125, 42, 232, 0.3);
     --accent-color: #7d2ae8;
+    --accent-glow: rgba(125, 42, 232, 0.4);
     --accent-hover: rgb(40, 0, 78);
     --text-primary: #ffffff;
-    --text-secondary: #ffffff9a;
+    --text-secondary: rgba(255, 255, 255, 0.7);
 
     --font-primary: "Google Sans", sans-serif;
     --font-secondary: "Syne", sans-serif;
     --font-size-button: 1.5rem;
+    --input-font-size: 1.1rem;
 
-    --gap-standard: 2rem;
-    --gap-small: 1rem;
-    --gap-minimal: 1px;
-    --input-height: 2.5rem;
-    --btn-margin-top: 30px;
+    --viewport-height: 100dvh;
+    --full-height: 100%;
     --container-min-width: 30%;
     --container-height: 60%;
     --wall-width: 50%;
-    --full-height: 100%;
-    --viewport-height: 100dvh;
+    
+    --gap-standard: 2rem;
+    --gap-small: 1rem;
+    --gap-minimal: 1px;
+    --btn-margin-top: 30px;
 
+    --input-height: 3.5rem;
     --radius-full: 2rem;
-    --radius-small: 0.5rem;
+    --radius-small: 0.75rem;
     --radius-none: 0;
+
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --transition-wall: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), border-radius ease-in-out 0.6s;
     --transition-fast: 0.3s ease;
     --z-index-wall: 10;
@@ -35,133 +40,161 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
-    margin: var(--radius-none);
-    padding: var(--radius-none);
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: var(--font-primary);
     color: var(--text-primary);
-    height: var(--viewport-height);
+    height: 100dvh;
     display: grid;
     place-items: center;
-    background-image: url(../assets/bg.jpg);
-    background-size: cover;
-    overflow: hidden; 
+    background: #0f0c29;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../assets/bg.jpg') center/cover no-repeat;
+    overflow: hidden;
 }
 
 .container {
     position: relative;
-    overflow: hidden;
+    width: 900px;
+    height: 650px;
     display: flex;
-    gap: var(--gap-standard);
-    padding: var(--gap-standard);
-    min-width: var(--container-min-width);
-    border-radius: var(--radius-full) var(--radius-none);
-    height: var(--container-height);
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: var(--glass-border);
+    border-radius: 2rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
 }
 
 .form-box {
     flex: 1;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--gap-standard);
     justify-content: center;
-    
-    h2 { text-align: center; }
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-family: var(--font-secondary);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(to right, #fff, #b98eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .form-content {
     display: flex;
     flex-direction: column;
-    margin-top: var(--gap-standard);
-    gap: var(--gap-minimal);
+    gap: 0.8rem;
+}
 
-    label{
-        font-family: var(--font-secondary);
-    }
+.form-content label {
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    color: var(--text-secondary);
 }
 
 .input-content {
-    margin-bottom: var(--gap-small);
-    padding: var(--radius-none) var(--gap-small);
-    border-radius: var(--radius-small);
     height: var(--input-height);
-
-    border: 2px solid transparent; 
-    
-    background: var(--accent-color);
+    width: 100%;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-small);
+    font-size: var(--input-font-size);
+    font-family: var(--font-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition-smooth);
+}
 
-    &::placeholder {
-        color: var(--text-secondary);
-        font-family: var(--font-secondary);
-    }
+.input-content::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.input-content:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .input-content:focus {
-    border-color: var(--accent-hover); 
-    box-shadow: var(--shadow-input); 
+    background: rgba(125, 42, 232, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: translateY(-2px);
 }
 
-.liquid {
-    background: var(--glass-bg);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--glass-border);
-    box-shadow: var(--shadow-input);
+.input-content:focus::placeholder {
+    opacity: 0;
 }
 
 button {
-    margin-top: var(--btn-margin-top);
-    padding: var(--radius-none) var(--gap-small);
-    border-radius: var(--radius-small);
+    margin-top: 1.5rem;
     height: var(--input-height);
+    border-radius: var(--radius-small);
     border: none;
     background: var(--accent-color);
-    color: var(--text-primary);
+    color: white;
     font-family: var(--font-secondary);
-    font-size: var(--font-size-button);
-    transition: transform var(--transition-fast);
-    &:hover{
-        transform: scale(1.1);
-    }
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(125, 42, 232, 0.3);
+    transition: var(--transition-smooth);
+}
+
+button:hover {
+    transform: scale(1.02) translateY(-3px);
+    background: #8e44ad;
+    box-shadow: 0 12px 25px rgba(125, 42, 232, 0.5);
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .wall {
-    display: flex;
-    place-content: center;
-    align-items: center;
-
-    background: var(--accent-color);
-
     position: absolute;
-    height: var(--full-height);
-    width: var(--wall-width);
-    top: var(--radius-none);
-    left: var(--radius-none); 
-    z-index: var(--z-index-wall); 
+    width: 50%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: var(--accent-color);
+    background: linear-gradient(135deg, #7d2ae8 0%, #4a148c 100%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: var(--transition-wall);
-    border-radius: var(--radius-none) var(--radius-full) var(--radius-full) var(--radius-none);
-    pointer-events: all; 
-    border: var(--glass-border);
-    box-shadow: var(--shadow);
+    border-radius: 0 2rem 2rem 0;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+}
 
+.wall a {
+    color: white;
+    font-size: 1.5rem;
     font-family: var(--font-secondary);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 3rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
 
-    & a {
-        color: var(--text-primary);
-        text-decoration: none;
-        transition: color var(--transition-fast);
-
-        &:hover {
-            color: var(--accent-hover); 
-            cursor: pointer;
-        }
-    }
+.wall a:hover {
+    background: white;
+    color: var(--accent-color);
 }
 
 #have {
@@ -169,13 +202,14 @@ button {
 }
 
 .wall.right {
-    transform: translateX(var(--full-height));
-    border-radius: var(--radius-full) var(--radius-none) var(--radius-none) var(--radius-full);
+    transform: translateX(100%);
+    border-radius: 2rem 0 0 2rem;
+}
 
-    #nohave {
-        display: none;
-    }
-    #have {
-        display: block;
-    }
+.wall.right #nohave {
+    display: none;
+}
+
+.wall.right #have {
+    display: block;
 }
