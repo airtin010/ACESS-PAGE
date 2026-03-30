@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Syne:wght@400..800&display=swap");
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --blur: blur(20px) saturate(170%);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    --shadow-input: 0 0 10px rgba(125, 42, 232, 0.3);
+
+    --accent-color: #7d2ae8;
+    --accent-glow: rgba(125, 42, 232, 0.4);
+    --accent-hover: rgb(40, 0, 78);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.55);
+
+    --font-primary: "Google Sans", sans-serif;
+    --font-secondary: "Syne", sans-serif;
+    --font-size-button: 1.5rem;
+    --input-font-size: 1.1rem;
+
+    --viewport-height: 100dvh;
+    --full-height: 100%;
+    --container-min-width: 30%;
+    --container-height: 60%;
+    --wall-width: 50%;
+
+    --gap-standard: 2rem;
+    --gap-small: 1rem;
+    --gap-minimal: 1px;
+    --btn-margin-top: 30px;
+
+    --input-height: 3.5rem;
+    --radius-full: 2rem;
+    --radius-small: 0.75rem;
+    --radius-none: 0;
+
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-wall: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), border-radius ease-in-out 0.6s;
+    --transition-fast: 0.3s ease;
+    --z-index-wall: 10;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    background: #0f0c29;
+    background: linear-gradient(160deg, rgba(15, 12, 41, 0.55) 0%, rgba(0, 0, 0, 0.45) 100%), url("../assets/bg.jpg") center / cover no-repeat fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.form-box {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+.form-box h2,
+.form-box-header h1 {
+    font-family: var(--font-secondary);
+    font-size: 2.2rem;
+    text-align: center;
+    background: linear-gradient(to right, #fff, #b98eff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-box h2 {
+    margin-bottom: 2rem;
+}
+
+.form-box-header h1 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.65rem;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-content label {
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.input-content {
+    height: var(--input-height);
+    width: 100%;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-small);
+    font-size: var(--input-font-size);
+    font-family: var(--font-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    outline: none;
+    transition: background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.input-content::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.input-content:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.input-content:focus {
+    background: rgba(125, 42, 232, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 18px var(--accent-glow), 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.input-content:focus::placeholder {
+    opacity: 0;
+}
+
+.form-auth-extra {
+    margin: -0.15rem 0 0;
+    text-align: right;
+    padding-right: 0.35rem;
+}
+
+.form-auth-extra a {
+    font-family: var(--font-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.form-auth-extra a:hover {
+    color: #d4b8ff;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.form-auth-extra a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.password-field {
+    position: relative;
+    width: 100%;
+}
+
+.password-field .input-content {
+    padding-right: 3.25rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    translate: 0 -50%;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.password-toggle:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.password-toggle .hidden {
+    display: none;
+}
+
+.form-content button[type="submit"] {
+    margin-top: 1.5rem;
+    height: var(--input-height);
+    border-radius: var(--radius-small);
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    font-family: var(--font-secondary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(125, 42, 232, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.form-content button[type="submit"]:hover {
+    transform: scale(1.02) translateY(-3px);
+    background: #8e44ad;
+    box-shadow: 0 12px 25px rgba(125, 42, 232, 0.5);
+}
+
+.form-content button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.form-content button[type="submit"]:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-content button[type="submit"]:hover,
+    .form-content button[type="submit"]:active {
+        transform: none;
+    }
+}

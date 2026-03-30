@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reset your password — enter your email to receive a link.">
+    <title>Forgot password · Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="static/css/forgot.css">
+</head>
+<body class="forgot-page">
+    <main class="container">
+        <div class="form-box">
+            <header class="form-box-header">
+                <span class="form-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <h1>Forgot password</h1>
+                <p class="lead">Enter your email address and we’ll send you a link to reset your password.</p>
+            </header>
+            <form class="form-content" action="/forgot" method="POST">
+                <label for="email">Email</label>
+                <input class="input-content" id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+                <button type="submit">Send reset link</button>
+            </form>
+            <p class="auth-footer">
+                <a href="index.html">Back to sign in</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>
